@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
+import "antd/dist/antd.css";
 import { connect } from "react-redux";
+import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
 
 import { handleInitialData } from "./actions/shared";
@@ -12,7 +13,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Dashboard />
+        <Layout>
+          <Dashboard />
+        </Layout>
       </div>
     );
   }

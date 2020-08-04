@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -10,10 +10,10 @@ import middleware from "./middleware/index";
 const store = createStore(reducer, middleware);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Fragment>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </Fragment>,
   document.getElementById("root")
 );

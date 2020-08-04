@@ -4,18 +4,20 @@ import { connect } from "react-redux";
 class Dashboard extends Component {
   render() {
     console.log(this.props);
+    console.log(this.props.authedUser);
     return (
       <div>
-        <h1>Hello world</h1>
+        <h1>Hello World</h1>
       </div>
     );
   }
 }
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, users, authedUser }) {
   return {
     questionIds: Object.keys(questions).sort(
-      (a, b) => questions(b).timestamp - questions(a).timestamp
+      (a, b) => questions[b].timestamp - questions[a].timestamp
     ),
+    answeredQIds: users.authedUser.answers,
   };
 }
 
