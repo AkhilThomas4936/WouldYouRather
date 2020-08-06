@@ -1,0 +1,31 @@
+.App {
+  padding-top: 30px;
+}
+.signin-container {
+  width: 570px;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  border: 1px solid #062957b0;
+}
+.logo {
+  height: 270px;
+  width: 40%;
+  margin: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.signin {
+  color: rgb(19, 100, 124);
+}
+.form-container {
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 70px;
+}
+.welcome {
+  width: 100%;
+  border: 1px solid rgb(217, 226, 226);
+  background-color: rgb(217, 226, 226);
+}
