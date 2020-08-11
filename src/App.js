@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import "./App.css";
-import Layout from "./components/Layout";
+import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import SignIn from "./components/Signin";
 
@@ -15,14 +15,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.loading ? (
-          <SignIn />
-        ) : (
-          <Layout>
-            <Dashboard />
-            <SignIn />
-          </Layout>
-        )}
+        <div>
+          {this.props.loading ? (
+            <div>
+              <Navbar />
+              <SignIn />
+            </div>
+          ) : (
+            <div>
+              <Navbar />
+              <Dashboard />
+            </div>
+          )}
+        </div>
       </div>
     );
   }

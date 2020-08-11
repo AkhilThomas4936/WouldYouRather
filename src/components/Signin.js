@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Form, Input, Button, Select } from "antd";
+import { Form, Button, Select } from "antd";
 import logo from "../utils/images/logo.png";
 import { setAuthedUser } from "../actions/authedUser";
-const { Option } = Select;
 
 class Signin extends Component {
   state = {
     authedId: null,
   };
-  onChange = (e) => {
-    console.log(e.target.value);
+  handleChange = (value) => {
+    this.setState({
+      authedId: value,
+    });
   };
   onClick = () => {
     this.props.dispatch(setAuthedUser(this.state.authedId));
@@ -28,23 +29,26 @@ class Signin extends Component {
               <h3>Please sign in to continue</h3>
             </div>
 
-            <img className="logo" src={logo} />
+            <img className="logo" src={logo} alt="logo" />
 
             <h1 className="signin">Sign in</h1>
             <div className="form-container">
               <Form>
                 <Form.Item>
                   <Select
-                    onChange={(e) => this.onChange(e)}
+                    onChange={(value) => this.handleChange(value)}
                     placeholder="Select User"
                   >
-                    <option value="null" disabled>
+                    <Select.Option value="null" disabled>
                       Select User
-                    </option>
+                    </Select.Option>
                     {Object.keys(this.props.users).map((user) => (
-                      <option key={user} value={user}>
+                      <Select.Option
+                        key={user}
+                        value={this.props.users[user].id}
+                      >
                         {this.props.users[user].name}
-                      </option>
+                      </Select.Option>
                     ))}
                   </Select>
                 </Form.Item>

@@ -1,12 +1,10 @@
-.App {
-  padding-top: 30px;
-}
 .signin-container {
   width: 570px;
   height: 100%;
   margin: auto;
   text-align: center;
   border: 1px solid #062957b0;
+  margin-top: 20px;
 }
 .logo {
   height: 270px;

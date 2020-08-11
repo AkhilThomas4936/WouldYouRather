@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props);
-    console.log(this.props.authedUser);
+    const { users, answeredQIds } = this.props;
+    console.log(users);
+    console.log(answeredQIds);
     return (
       <div>
         <h1>Hello World</h1>
@@ -19,6 +20,7 @@ function mapStateToProps({ questions, users, authedUser }) {
     ),
     answeredQIds: users.authedUser ? users.authedUser.answers : [],
     authedUser,
+    users,
   };
 }
 
