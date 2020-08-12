@@ -1,25 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import QuestionCard from "./QuestionCard";
+
 class Dashboard extends Component {
   render() {
-    const { users, answeredQIds } = this.props;
-    console.log(users);
-    console.log(answeredQIds);
+    const { answeredQuestions, unAnsweredQuestions, users } = this.props;
+
+    console.log(answeredQuestions);
+    console.log(unAnsweredQuestions);
+
     return (
-      <div>
-        <h1>Hello World</h1>
+      <div className="dashboard">
+        <ul>
+          {answeredQuestions.map((question) => (
+            <QuestionCard key={question.id} question={question} users={users} />
+          ))}
+        </ul>
       </div>
     );
   }
 }
 function mapStateToProps({ questions, users, authedUser }) {
+  const answeredQIds = Object.keys(users[authedUser].answers);
+
+  const answeredQuestions = Object.values(questions)
+    .filter((question) => answeredQIds.includes(question.id))
+    .sort((a, b) => b.timestamp - a.timestamp);
+
+  const unAnsweredQuestions = Object.values(questions)
+    .filter((question) => !answeredQIds.includes(question.id))
+    .sort((a, b) => b.timestamp - a.timestamp);
+
   return {
-    questionIds: Object.keys(questions).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp
-    ),
-    answeredQIds: users.authedUser ? users.authedUser.answers : [],
-    authedUser,
+    answeredQuestions,
+    unAnsweredQuestions,
     users,
   };
 }
