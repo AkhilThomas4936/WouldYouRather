@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import "./App.css";
+
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
-import SignIn from "./components/Signin";
+import SignIn from "./components/SignIn";
 
 import { handleInitialData } from "./actions/shared";
 

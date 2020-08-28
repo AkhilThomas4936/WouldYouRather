@@ -1,67 +1,148 @@
+/* Global styles
+------------------------------------*/
+
+/* Navbar
+------------------------------------*/
+.navbar {
+  font-size: 1.5em;
+  background-color: #5f9ea0;
+  margin: 0 auto;
+  padding: 0;
+}
+.navbar ul {
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid grey;
+  list-style-type: none;
+  justify-content: center;
+  padding: 0;
+}
+.navbar ul li {
+  padding: 0.8em 1.5em;
+}
+.navbar li:hover {
+  background-color: #b0e0e6;
+}
+
+/* Sign in
+------------------------------------*/
 .signin-container {
-  width: 570px;
+  min-width: 300px;
+  width: 35%;
   height: 100%;
-  margin: auto;
+  margin: 20px auto;
+  padding-bottom: 4em;
+
   text-align: center;
   border: 1px solid #062957b0;
-  margin-top: 20px;
+}
+.welcome {
+  width: 100%;
+  padding-top: 40px;
+  border: 1px solid rgb(217, 226, 226);
+  background-color: rgb(217, 226, 226);
 }
 .logo {
-  height: 270px;
+  height: 50%;
   width: 40%;
-  margin: auto;
-  padding-top: 15px;
+  margin-top: 20px;
+  padding-top: 5px;
   padding-bottom: 15px;
 }
 .signin {
   color: rgb(19, 100, 124);
 }
-.form-container {
+.form select {
   width: 90%;
-  text-align: center;
-  margin: auto;
-  padding-bottom: 70px;
+  height: 35px;
 }
-.welcome {
-  width: 100%;
-  border: 1px solid rgb(217, 226, 226);
-  background-color: rgb(217, 226, 226);
+.form input {
+  display: block;
 }
+.btn-signin {
+  margin: 20px 20px;
+  padding: 3px 20px;
+  background-color: #5f9ea0;
+  font-size: 20px;
+  border-radius: 10%;
+}
+
+/* Dashboard
+------------------------------------*/
 .dashboard {
-  width: 700px;
+  width: 50%;
   height: 100%;
-  margin: auto;
-  text-align: center;
   border: 1px solid #062957b0;
-  margin-top: 20px;
+  margin: 0 auto;
+  padding: 0;
 }
-.question-card-container {
-  width: 90%;
+.dashboard-nav {
+  font-size: 1.2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #5f9ea0;
+  list-style-type: none;
+  padding: 0;
+  justify-items: stretch;
+}
+.dashboard-nav li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.1em 1.2em;
+  font-size: 1.2em;
+}
+.dashboard-nav li:hover {
+  background-color: #b0e0e6;
+}
+
+.dashboard ul {
+  padding: 0;
+}
+.unanswered {
+  align-self: stretch;
+}
+
+.answered {
+  align-self: stretch;
+}
+
+/* QuestionCard
+------------------------------------*/
+.questioncard-container {
+  width: 80%;
   height: 100%;
-  margin: auto;
-  text-align: center;
   border: 1px solid #062957b0;
-  margin-top: 20px;
+  margin: 1.1em auto;
+  padding: 0;
 }
 .card-title {
-  width: 100%;
+  padding: 1em 1.01em;
   background-color: rgb(217, 226, 226);
-  text-align: left;
-  padding-left: 30px;
 }
-.view-button {
-  padding: 2px 50px;
-  margin: 10px;
-  border: 1px solid rgb(10, 99, 29);
-  color: rgb(10, 99, 29);
+.card-title h2 {
+  margin: 0 0;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
 .card-avatar {
-  background: #3a6f9a;
-  float: left;
+  margin: 2em 1.1em;
+  padding-right: 1.1em;
+  border-right: 1px solid gray;
 }
-.card-container {
-  padding-left: 50px;
-  padding-bottom: 20px;
-  padding-top: 13px;
-  padding-right: 50px;
+.card-grid-2 {
+  margin: 1.1em 1.1em;
+  justify-content: center;
+  align-items: center;
+  padding: 1.1em 1.2em;
+  font-weight: 1.1em;
+}
+.card-btn {
+  padding-left: 4em;
+  padding-right: 4em;
+  color: #008000;
+
+  border-color: #006400;
 }

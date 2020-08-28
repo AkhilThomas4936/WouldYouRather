@@ -12,6 +12,10 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboard">
+        <ul className="dashboard-nav">
+          <li className="unanswered">Unanswered</li>
+          <li className="answered">Answered</li>
+        </ul>
         <ul>
           {answeredQuestions.map((question) => (
             <QuestionCard key={question.id} question={question} users={users} />
