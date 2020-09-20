@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
+import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
@@ -10,10 +11,10 @@ import middleware from "./middleware/index";
 const store = createStore(reducer, middleware);
 
 ReactDOM.render(
-  <Fragment>
+  <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
-  </Fragment>,
+  </BrowserRouter>,
   document.getElementById("root")
 );

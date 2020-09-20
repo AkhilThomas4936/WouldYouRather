@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import "antd/dist/antd.css";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./components/ui/theme";
+
 import { connect } from "react-redux";
 import "./App.css";
+import { Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
@@ -15,21 +18,23 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div>
-          {this.props.loading ? (
-            <div>
-              <Navbar />
-              <SignIn />
-            </div>
-          ) : (
-            <div>
-              <Navbar />
-              <Dashboard />
-            </div>
-          )}
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <div>
+            {this.props.loading ? (
+              <div>
+                <Navbar />
+                <SignIn />
+              </div>
+            ) : (
+              <div>
+                <Navbar />
+                <Dashboard />
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     );
   }
 }
