@@ -1,8 +1,12 @@
+import sarah from "../utils/images/sarah.svg";
+import tyler from "../utils/images/tyler.svg";
+import john from "../utils/images/john.svg";
+
 let users = {
   sarahedo: {
     id: "sarahedo",
     name: "Sarah Edo",
-    avatar: "https://api.adorable.io/avatars/100/sarah@adorable.io.png",
+    avatar: sarah,
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
       "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -14,7 +18,7 @@ let users = {
   tylermcginnis: {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
-    avatar: "https://api.adorable.io/avatars/100/tyler@adorable.io.png",
+    avatar: tyler,
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo",
@@ -24,7 +28,7 @@ let users = {
   johndoe: {
     id: "johndoe",
     name: "John Doe",
-    avatar: "https://api.adorable.io/avatars/100/jondoe@adorable.io.png",
+    avatar: john,
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",

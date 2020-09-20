@@ -7,7 +7,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import theme from "./ui/theme";
+import logo from "../utils/images/logo.png";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -26,11 +26,21 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "3em",
+    marginBottom: "1em",
   },
 
   tabContainer: {
     marginLeft: "auto",
+  },
+  logo: {
+    marginLeft: "30px",
+    height: "3em",
+    width: "3em",
+  },
+  avatar: {
+    height: "3.5em",
+    width: "3.5em",
+    paddingLeft: "0px",
   },
 
   tab: {
@@ -47,6 +57,8 @@ function Navbar(props) {
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar>
+            <img className={classes.logo} src={logo} />
+
             <Tabs className={classes.tabContainer}>
               <Tab className={classes.tab} label="Home" />
               <Tab className={classes.tab} label="New Question" />
@@ -55,6 +67,16 @@ function Navbar(props) {
                 <Tab
                   className={classes.tab}
                   label={`Hello ${props.users[props.authedUser].name}`}
+                />
+              )}
+              {props.loading ? null : (
+                <Tab
+                  label={
+                    <img
+                      className={classes.avatar}
+                      src={props.users[props.authedUser].avatar}
+                    />
+                  }
                 />
               )}
               {props.loading ? null : (
@@ -68,19 +90,6 @@ function Navbar(props) {
     </React.Fragment>
   );
 }
-
-// <nav className="navbar">
-//   <ul>
-//     <li>Home</li>
-//     <li>New Question</li>
-//     <li>Leader Board</li>
-//     {props.loading ? null : (
-//       <li>{`Hello ${props.users[props.authedUser].name}`}</li>
-//     )}
-
-//     {props.loading ? null : <li>Logout</li>}
-//   </ul>
-// </nav>
 
 function mapStateToProps({ authedUser, users }) {
   return {

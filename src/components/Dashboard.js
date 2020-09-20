@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import QuestionCard from "../components/QuestionCard";
 
-import QuestionCard from "./QuestionCard";
+import Paper from "@material-ui/core/Paper";
+import Toolbar from "@material-ui/core/Toolbar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 class Dashboard extends Component {
   state = {
-    toggle: true,
+    selectedTab: 0,
   };
-  toggleScreen = () => {
-    this.setState((previousState) => ({ toggle: !previousState.toggle }));
-    console.log(this.state.toggle);
+
+  handleChange = (e, newValue) => {
+    this.setState({
+      selectedTab: newValue,
+    });
   };
 
   render() {
@@ -17,20 +23,40 @@ class Dashboard extends Component {
 
     console.log(answeredQuestions);
     console.log(unAnsweredQuestions);
-    console.log(this.state.toggle);
 
     return (
-      <div className="dashboard">
-        <ul className="dashboard-nav">
-          <li className="unanswered" onClick={() => this.toggleScreen}>
-            Unanswered
-          </li>
-          <li className="answered" onClick={() => this.toggleScreen}>
-            Answered
-          </li>
-        </ul>
-        {this.state.toggle ? (
-          <ul>
+      <Paper
+        elevation="20"
+        style={{
+          width: "50%",
+          margin: "auto",
+          padding: " 0px",
+          paddingBottom: "20px",
+        }}
+      >
+        <Toolbar
+          style={{
+            backgroundColor: "#81c784",
+          }}
+        >
+          <Tabs
+            value={this.state.selectedTab}
+            onChange={this.handleChange}
+            centered
+            style={{
+              margin: "auto",
+            }}
+          >
+            <Tab label="Unanswered" />
+            <Tab label="Answered" />
+          </Tabs>
+        </Toolbar>
+        {this.state.selectedTab === 0 ? (
+          <ul
+            style={{
+              padding: 0,
+            }}
+          >
             {unAnsweredQuestions.map((question) => (
               <QuestionCard
                 key={question.id}
@@ -40,7 +66,11 @@ class Dashboard extends Component {
             ))}
           </ul>
         ) : (
-          <ul>
+          <ul
+            style={{
+              padding: 0,
+            }}
+          >
             {answeredQuestions.map((question) => (
               <QuestionCard
                 key={question.id}
@@ -50,7 +80,7 @@ class Dashboard extends Component {
             ))}
           </ul>
         )}
-      </div>
+      </Paper>
     );
   }
 }

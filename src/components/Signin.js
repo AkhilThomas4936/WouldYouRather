@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
-import logo from "../utils/images/logo.png";
+import welcome from "../utils/images/welcome.svg";
 
 class SignInTest extends Component {
   state = {
@@ -19,31 +21,40 @@ class SignInTest extends Component {
   render() {
     console.log(this.state.authedId);
     return (
-      <div className="signin-container">
-        <div className="welcome">
-          <h1>Welcome to the Would You Rather App!</h1>
-          <h3>Please sign in to continue</h3>
-        </div>
-        <img className="logo" src={logo} alt="logo" />
-        <h1 className="signin">Sign in</h1>
+      <Paper className="signin-container" elevation="24">
+        <div>
+          <div style={{ fontFamily: "Helvetica Neue" }} className="welcome">
+            <h1>Welcome to the Would You Rather App!</h1>
+            <h3>Please sign in to continue</h3>
+          </div>
+          <img className="logo" src={welcome} alt="logo" />
+          <h1 className="signin">Sign in</h1>
 
-        <form className="form">
-          <select
-            onChange={(e) => this.handleChange(e)}
-            placeholder="Select User"
-          >
-            <option value="null">Select User</option>
-            {Object.keys(this.props.users).map((user) => (
-              <option key={user} value={this.props.users[user].id}>
-                {this.props.users[user].name}
-              </option>
-            ))}
-          </select>
-          <button className="btn-signin" onClick={this.onClick}>
-            Sign in
-          </button>
-        </form>
-      </div>
+          <form className="form">
+            <select
+              onChange={(e) => this.handleChange(e)}
+              placeholder="Select User"
+            >
+              <option value="null">Select User</option>
+              {Object.keys(this.props.users).map((user) => (
+                <option key={user} value={this.props.users[user].id}>
+                  {this.props.users[user].name}
+                </option>
+              ))}
+            </select>
+            <Button
+              style={{
+                marginTop: "1.2em",
+              }}
+              variant="contained"
+              color="secondary"
+              onClick={this.onClick}
+            >
+              Signin
+            </Button>
+          </form>
+        </div>
+      </Paper>
     );
   }
 }
