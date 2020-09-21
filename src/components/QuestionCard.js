@@ -1,5 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -31,15 +33,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function QuestionCard(props) {
-  const history = useHistory();
-
-  const toQuestionDetailed = (e, questionId) => {
-    const to = `/questions/:${questionId}`;
-    history.push(to);
-  };
   const { question, users } = props;
 
   const classes = useStyles();
+  const questionId = props.question.id;
 
   return (
     <div className={classes.root}>
@@ -89,14 +86,18 @@ export default function QuestionCard(props) {
                 <h4
                   style={{ fontFamily: "Roboto", color: "#616161" }}
                 >{`__${question.optionOne.text.slice(3, 10)}__`}</h4>
-                <Button
-                  style={{ padding: "0.5em 3em" }}
-                  variant="contained"
-                  color="secondary"
-                  onClick={(e) => toQuestionDetailed(e, question.id)}
+                <Link
+                  to={`questions/${questionId}`}
+                  style={{ textDecoration: "none" }}
                 >
-                  View Full
-                </Button>
+                  <Button
+                    style={{ padding: "0.5em 3em" }}
+                    variant="contained"
+                    color="secondary"
+                  >
+                    View Full
+                  </Button>
+                </Link>
               </Grid>
               <Grid item></Grid>
             </Grid>

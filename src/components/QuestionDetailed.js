@@ -1,12 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { saveQuestionAnswer } from "../actions/questions";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import theme from "../components/ui/theme";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import Radio from "@material-ui/core/Radio";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,85 +33,135 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
+    marginTop: "30px",
   },
 }));
 
 function QuestionDetailed(props) {
-  const { question, users } = props;
+  const { questions, users, authedUser } = props;
+  const { questionId } = props.match.params;
+  const question = questions[questionId];
+
+  const [selectedValue, setSelectedValue] = React.useState("optionOne");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.log(selectedValue);
+    console.log(authedUser);
+    props.saveQuestionAnswer(authedUser, questionId, selectedValue);
+  };
 
   const classes = useStyles();
+  //   console.log(users[question.author].avatar);
+  //   console.log(question.optionOne.text);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper} elevation="10">
-        <h2
-          style={{
-            backgroundColor: "#e0e0e0",
-            margin: 0,
-            padding: "0.5em",
-            marginBottom: "10px",
-          }}
-        >{`${props.questions.id.author} asks:`}</h2>
-
-        <Grid container spacing={2}>
-          <Grid
-            item
+    <ThemeProvider theme={theme}>
+      <Navbar />
+      <div className={classes.root}>
+        <Paper className={classes.paper} elevation="10">
+          <h3
             style={{
-              borderRightColor: "solid black 1px",
+              fontFamily: "Roboto",
+              backgroundColor: "#e0e0e0",
+              margin: 0,
+              padding: "0.5em",
+              marginBottom: "10px",
             }}
-          >
-            <ButtonBase
-              className={classes.image}
+          >{`${question.author} asks:`}</h3>
+
+          <Grid container spacing={2}>
+            <Grid
+              item
               style={{
-                paddingRight: "20px",
-                borderRight: "solid #e0e0e0 1px",
+                borderRightColor: "solid black 1px",
               }}
             >
-              <img
-                className={classes.img}
-                alt="complex"
-                src={users[question.author].avatar}
-              />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                {" "}
-                <h3
-                  style={{
-                    color: "#616161",
-                  }}
-                >
-                  Would you rather
-                </h3>
-                <h4>{question.optionOne.text.slice(3, 10)}</h4>
-                <h4>{question.optionTwo.text.slice(3, 10)}</h4>
-                <Button
-                  style={{ padding: "0.5em 2.5em" }}
-                  variant="contained"
-                  color="secondary"
-                >
-                  View Full
-                </Button>
+              <ButtonBase
+                className={classes.image}
+                style={{
+                  paddingRight: "20px",
+                  borderRight: "solid #e0e0e0 1px",
+                }}
+              >
+                <img
+                  className={classes.img}
+                  alt="complex"
+                  src={users[question.author].avatar}
+                />
+              </ButtonBase>
+            </Grid>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                <Grid item xs>
+                  {" "}
+                  <h3
+                    style={{
+                      color: "#616161",
+                    }}
+                  >
+                    Would you rather...
+                  </h3>
+                  <div>
+                    <Radio
+                      checked={selectedValue === "optionOne"}
+                      onChange={handleChange}
+                      value="optionOne"
+                      color="secondary"
+                    />
+                    <span style={{ fontFamily: "Roboto", color: "#616161" }}>
+                      {`${question.optionOne.text}`}
+                    </span>
+                  </div>
+                  <div>
+                    <Radio
+                      color="secondary"
+                      checked={selectedValue === "optionTwo"}
+                      onChange={handleChange}
+                      value="optionTwo"
+                    />
+                    <span style={{ fontFamily: "Roboto", color: "#616161" }}>
+                      {`${question.optionTwo.text}`}
+                    </span>
+                  </div>
+                  <Link
+                    to="/questions/questionResult"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button
+                      onClick={(e) => handleSubmit()}
+                      style={{
+                        padding: "0.5em 3em",
+                        color: "white",
+                        backgroundColor: "#388e3c",
+                      }}
+                      variant="contained"
+                    >
+                      Submit
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item></Grid>
               </Grid>
-              <Grid item></Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Paper>
-    </div>
+        </Paper>
+      </div>
+    </ThemeProvider>
   );
 }
 
-function mapStateToProps({ users, questions, authedUser }, { match }) {
-  const id = match.params.id;
+function mapStateToProps({ questions, users, authedUser }) {
   return {
-    id,
     questions,
-    authedUser,
     users,
+    authedUser,
   };
 }
 
-export default connect(mapStateToProps)(QuestionDetailed);
+export default connect(mapStateToProps, { saveQuestionAnswer })(
+  QuestionDetailed
+);

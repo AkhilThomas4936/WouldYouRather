@@ -46,6 +46,7 @@ class SignInTest extends Component {
             </select>
             <Button
               style={{
+                width: "25%",
                 marginTop: "1.2em",
               }}
               variant="contained"
