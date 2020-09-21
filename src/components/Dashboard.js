@@ -36,7 +36,7 @@ class Dashboard extends Component {
       >
         <Toolbar
           style={{
-            backgroundColor: "#81c784",
+            backgroundColor: "#7986cb",
           }}
         >
           <Tabs
