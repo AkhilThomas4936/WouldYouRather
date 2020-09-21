@@ -28,7 +28,7 @@ class Dashboard extends Component {
       <Paper
         elevation="20"
         style={{
-          width: "50%",
+          width: "45%",
           margin: "auto",
           padding: " 0px",
           paddingBottom: "20px",

@@ -1,5 +1,6 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { connect } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -30,13 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuestionCard(props) {
-  const history = useHistory();
-
-  const toQuestionDetailed = (e, questionId) => {
-    const to = `/questions/:${questionId}`;
-    history.push(to);
-  };
+function QuestionDetailed(props) {
   const { question, users } = props;
 
   const classes = useStyles();
@@ -44,15 +39,14 @@ export default function QuestionCard(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation="10">
-        <h3
+        <h2
           style={{
-            fontFamily: "Roboto",
             backgroundColor: "#e0e0e0",
             margin: 0,
             padding: "0.5em",
             marginBottom: "10px",
           }}
-        >{`${users[question.author].name} asks:`}</h3>
+        >{`${props.questions.id.author} asks:`}</h2>
 
         <Grid container spacing={2}>
           <Grid
@@ -86,14 +80,12 @@ export default function QuestionCard(props) {
                 >
                   Would you rather
                 </h3>
-                <h4
-                  style={{ fontFamily: "Roboto", color: "#616161" }}
-                >{`__${question.optionOne.text.slice(3, 10)}__`}</h4>
+                <h4>{question.optionOne.text.slice(3, 10)}</h4>
+                <h4>{question.optionTwo.text.slice(3, 10)}</h4>
                 <Button
-                  style={{ padding: "0.5em 3em" }}
+                  style={{ padding: "0.5em 2.5em" }}
                   variant="contained"
                   color="secondary"
-                  onClick={(e) => toQuestionDetailed(e, question.id)}
                 >
                   View Full
                 </Button>
@@ -106,3 +98,15 @@ export default function QuestionCard(props) {
     </div>
   );
 }
+
+function mapStateToProps({ users, questions, authedUser }, { match }) {
+  const id = match.params.id;
+  return {
+    id,
+    questions,
+    authedUser,
+    users,
+  };
+}
+
+export default connect(mapStateToProps)(QuestionDetailed);

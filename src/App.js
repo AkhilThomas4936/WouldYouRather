@@ -1,47 +1,18 @@
-import React, { Component } from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./components/ui/theme";
-
-import { connect } from "react-redux";
-import "./App.css";
 import { Route } from "react-router-dom";
+import HomePage from "../src/components/HomePage";
+import QuestionDetailed from "../src/components/QuestionDetailed";
 
-import Navbar from "./components/Navbar";
-import Dashboard from "./components/Dashboard";
-import SignIn from "./components/SignIn";
+import React from "react";
 
-import { handleInitialData } from "./actions/shared";
-
-class App extends Component {
-  componentDidMount() {
-    this.props.dispatch(handleInitialData());
-  }
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <div>
-            {this.props.loading ? (
-              <div>
-                <Navbar />
-                <SignIn />
-              </div>
-            ) : (
-              <div>
-                <Navbar />
-                <Dashboard />
-              </div>
-            )}
-          </div>
-        </div>
-      </ThemeProvider>
-    );
-  }
+export default function App() {
+  return (
+    <div>
+      <Route exact path="/" render={() => <HomePage />} />
+      <Route
+        exact
+        path="/questions/:questoinId"
+        render={() => <QuestionDetailed />}
+      />
+    </div>
+  );
 }
-function mapStateToProps({ authedUser }) {
-  return {
-    loading: authedUser === null,
-  };
-}
-
-export default connect(mapStateToProps)(App);

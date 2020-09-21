@@ -39,6 +39,8 @@ class SignInTest extends Component {
               {Object.keys(this.props.users).map((user) => (
                 <option key={user} value={this.props.users[user].id}>
                   {this.props.users[user].name}
+
+                  {/* <img src={this.props.users[user].avatar} /> */}
                 </option>
               ))}
             </select>
