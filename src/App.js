@@ -6,7 +6,6 @@ import HomePage from "../src/components/HomePage";
 import SignIn from "../src/components/SignIn";
 import NotFound from "../src/components/NotFound";
 import QuestionDetailed from "../src/components/QuestionDetailed";
-import QuestionResult from "../src/components/QuestionResult";
 
 import { handleInitialData } from "./actions/shared";
 
@@ -18,7 +17,7 @@ class App extends Component {
     return (
       <Switch>
         {this.props.loading ? (
-          <Route exact path="/" render={() => <SignIn />} />
+          <Route render={() => <SignIn />} />
         ) : (
           <Fragment>
             <Route exact path="/" render={() => <HomePage />} />
@@ -26,11 +25,6 @@ class App extends Component {
               exact
               path="/questions/:questionId"
               render={(props) => <QuestionDetailed {...props} />}
-            />
-            <Route
-              exact
-              path="/questions/questionResult"
-              render={() => <QuestionResult />}
             />
           </Fragment>
         )}

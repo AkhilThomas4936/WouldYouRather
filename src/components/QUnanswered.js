@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import ButtonBase from "@material-ui/core/ButtonBase";
+import { Grid, Paper, Button, ButtonBase, Radio } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,15 +23,25 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
+    marginTop: "30px",
   },
 }));
 
-export default function QuestionCard(props) {
-  const { question, users } = props;
+export default function QUnanswered(props) {
+  const { authedUser, questionId, author, avatar, question } = props;
+  const [selectedValue, setSelectedValue] = React.useState("optionOne");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.log(selectedValue);
+    console.log(authedUser);
+    props.saveQuestionAnswer(authedUser, questionId, selectedValue);
+  };
 
   const classes = useStyles();
-  const questionId = props.question.id;
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation="10">
@@ -47,7 +53,7 @@ export default function QuestionCard(props) {
             padding: "0.5em",
             marginBottom: "10px",
           }}
-        >{`${users[question.author].name} asks:`}</h3>
+        >{`${author} asks:`}</h3>
 
         <Grid container spacing={2}>
           <Grid
@@ -63,11 +69,7 @@ export default function QuestionCard(props) {
                 borderRight: "solid #e0e0e0 1px",
               }}
             >
-              <img
-                className={classes.img}
-                alt="complex"
-                src={users[question.author].avatar}
-              />
+              <img className={classes.img} alt="complex" src={avatar} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
@@ -79,21 +81,44 @@ export default function QuestionCard(props) {
                     color: "#616161",
                   }}
                 >
-                  Would you rather
+                  Would you rather...
                 </h3>
-                <h4
-                  style={{ fontFamily: "Roboto", color: "#616161" }}
-                >{`__${question.optionOne.text.slice(3, 10)}__`}</h4>
+                <div>
+                  <Radio
+                    checked={selectedValue === "optionOne"}
+                    onChange={handleChange}
+                    value="optionOne"
+                    color="secondary"
+                  />
+                  <span style={{ fontFamily: "Roboto", color: "#616161" }}>
+                    {`${question.optionOne.text}`}
+                  </span>
+                </div>
+                <div>
+                  <Radio
+                    color="secondary"
+                    checked={selectedValue === "optionTwo"}
+                    onChange={handleChange}
+                    value="optionTwo"
+                  />
+                  <span style={{ fontFamily: "Roboto", color: "#616161" }}>
+                    {`${question.optionTwo.text}`}
+                  </span>
+                </div>
                 <Link
                   to={`questions/${questionId}`}
                   style={{ textDecoration: "none" }}
                 >
                   <Button
-                    style={{ padding: "0.5em 3em" }}
+                    onClick={(e) => handleSubmit()}
+                    style={{
+                      padding: "0.5em 3em",
+                      color: "white",
+                      backgroundColor: "#388e3c",
+                    }}
                     variant="contained"
-                    color="secondary"
                   >
-                    View Full
+                    Submit
                   </Button>
                 </Link>
               </Grid>
