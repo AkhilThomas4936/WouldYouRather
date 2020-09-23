@@ -28,7 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function QUnanswered(props) {
-  const { authedUser, questionId, author, avatar, question } = props;
+  const {
+    authedUser,
+    questionId,
+    author,
+    avatar,
+    question,
+    saveQuestionAnswer,
+    saveUserAnswer,
+  } = props;
   const [selectedValue, setSelectedValue] = React.useState("optionOne");
 
   const handleChange = (event) => {
@@ -36,12 +44,13 @@ export default function QUnanswered(props) {
   };
 
   const handleSubmit = () => {
-    console.log(selectedValue);
-    console.log(authedUser);
-    props.saveQuestionAnswer(authedUser, questionId, selectedValue);
+    saveQuestionAnswer(authedUser, questionId, selectedValue);
+    saveUserAnswer(authedUser, questionId, selectedValue);
   };
 
   const classes = useStyles();
+  console.log(props);
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation="10">

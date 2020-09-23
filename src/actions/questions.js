@@ -9,6 +9,7 @@ export function receiveQuestions(questions) {
 }
 
 export function saveQuestionAnswer(authedUser, qid, answer) {
+  console.log("this one is working");
   return {
     type: SAVE_QUESTION_ANSWER,
     authedUser,

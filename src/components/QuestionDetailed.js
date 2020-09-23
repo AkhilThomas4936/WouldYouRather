@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import QUnanswered from "./QUnanswered";
 import QAnswered from "./QAnswered";
 import { saveQuestionAnswer } from "../actions/questions";
+import { saveUserAnswer } from "../actions/users";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../components/ui/theme";
@@ -36,6 +37,8 @@ function QuestionDetailed(props) {
           author={author}
           avatar={avatar}
           question={question}
+          saveQuestionAnswer={() => saveQuestionAnswer()}
+          saveUserAnswer={() => saveUserAnswer()}
         />
       ) : (
         <QAnswered
@@ -86,6 +89,6 @@ function mapStateToProps({ questions, users, authedUser }, { match }) {
   };
 }
 
-export default connect(mapStateToProps, { saveQuestionAnswer })(
+export default connect(mapStateToProps, { saveQuestionAnswer, saveUserAnswer })(
   QuestionDetailed
 );

@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import { BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
 import middleware from "./middleware/index";
 
-const store = createStore(reducer, middleware);
+// const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(middleware))
+);
 
 ReactDOM.render(
   <BrowserRouter>
