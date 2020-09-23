@@ -22,6 +22,8 @@ function QuestionDetailed(props) {
     optionOneVotes,
     optionTwoVotes,
     totalVotes,
+    saveQuestionAnswer,
+    saveUserAnswer,
   } = props;
 
   if (!question) {
@@ -37,8 +39,12 @@ function QuestionDetailed(props) {
           author={author}
           avatar={avatar}
           question={question}
-          saveQuestionAnswer={() => saveQuestionAnswer()}
-          saveUserAnswer={() => saveUserAnswer()}
+          saveQuestionAnswer={(authedUser, questionId, answer) =>
+            saveQuestionAnswer(authedUser, questionId, answer)
+          }
+          saveUserAnswer={(authedUser, questionId, answer) =>
+            saveUserAnswer(authedUser, questionId, answer)
+          }
         />
       ) : (
         <QAnswered

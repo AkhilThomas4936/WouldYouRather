@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, Button, ButtonBase, Radio } from "@material-ui/core";
+import { _saveQuestionAnswer } from "../utils/_DATA";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,11 @@ export default function QUnanswered(props) {
   const handleSubmit = () => {
     saveQuestionAnswer(authedUser, questionId, selectedValue);
     saveUserAnswer(authedUser, questionId, selectedValue);
+    _saveQuestionAnswer({
+      authedUser,
+      qid: questionId,
+      answer: selectedValue,
+    });
   };
 
   const classes = useStyles();
@@ -115,7 +121,7 @@ export default function QUnanswered(props) {
                   </span>
                 </div>
                 <Link
-                  to={`questions/${questionId}`}
+                  to={`/questions/${questionId}`}
                   style={{ textDecoration: "none" }}
                 >
                   <Button
@@ -131,7 +137,6 @@ export default function QUnanswered(props) {
                   </Button>
                 </Link>
               </Grid>
-              <Grid item></Grid>
             </Grid>
           </Grid>
         </Grid>
