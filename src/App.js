@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Switch>
         {this.props.loading ? (
-          <Route render={() => <SignIn />} />
+          <Route path="/" render={() => <SignIn />} />
         ) : (
           <Fragment>
             <Route exact path="/" render={() => <HomePage />} />
@@ -30,9 +30,10 @@ class App extends Component {
             />
             <Route exact path="/add" render={() => <NewQuestion />} />
             <Route exact path="/leaderboard" render={() => <Leaderboard />} />
+            <Route render={() => <NotFound />} />
           </Fragment>
         )}
-        <Route render={() => <NotFound />} />
+        {/* <Route component={NotFound} /> */}
       </Switch>
     );
   }

@@ -95,6 +95,7 @@ function Navbar(props) {
 
               {props.loading ? null : (
                 <Tab
+                  style={{ color: "#fff" }}
                   className={classes.tab}
                   label={`Hello ${props.users[props.authedUser].name}`}
                   disabled
@@ -113,7 +114,9 @@ function Navbar(props) {
                 />
               )}
               {props.loading ? null : (
-                <Tab className={classes.tab} label="Logout" />
+                <Link to="/" className={classes.link}>
+                  <Tab className={classes.tab} label="Logout" />
+                </Link>
               )}
             </Tabs>
           </Toolbar>
