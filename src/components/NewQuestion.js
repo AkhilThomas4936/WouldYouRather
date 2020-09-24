@@ -66,9 +66,13 @@ function NewQuestion(props) {
   };
 
   const classes = useStyles();
+  if (submitted) {
+    return <Redirect />;
+  }
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
+
       <Paper className={classes.paper} elevation={15}>
         <h1
           style={{
@@ -110,7 +114,7 @@ function NewQuestion(props) {
               type="text"
               autoFocus
             />
-            {/* <h4 style={{ margin: 0, textAlign: "center" }}>Or</h4> */}
+            <h4 style={{ margin: 0, textAlign: "center" }}>Or</h4>
             <TextField
               inputRef={register}
               style={{ width: "100%" }}

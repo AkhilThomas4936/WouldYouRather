@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     height: 128,
   },
   img: {
-    margin: "auto",
+    margin: "auto ",
+    marginTop: "30px",
     display: "block",
     maxWidth: "100%",
     maxHeight: "100%",
@@ -42,7 +44,7 @@ export default function QuestionCard(props) {
         <h3
           style={{
             fontFamily: "Roboto",
-            backgroundColor: "#e0e0e0",
+            backgroundColor: "rgb(217, 226, 226)",
             margin: 0,
             padding: "0.5em",
             marginBottom: "10px",
@@ -70,20 +72,22 @@ export default function QuestionCard(props) {
               />
             </ButtonBase>
           </Grid>
+          <CssBaseline />
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 {" "}
-                <h3
+                <h2
                   style={{
-                    color: "#616161",
+                    color: "black",
+                    // "#616161",
                   }}
                 >
                   Would you rather
-                </h3>
+                </h2>
                 <h4
                   style={{ fontFamily: "Roboto", color: "#616161" }}
-                >{`__${question.optionOne.text.slice(3, 10)}__`}</h4>
+                >{`__${question.optionOne.text.slice(0, 10)}__`}</h4>
                 <Link
                   to={`questions/${questionId}`}
                   style={{ textDecoration: "none" }}

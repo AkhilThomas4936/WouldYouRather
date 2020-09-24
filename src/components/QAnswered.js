@@ -75,7 +75,7 @@ export default function QAnswered(props) {
         <h3
           style={{
             fontFamily: "Roboto",
-            backgroundColor: "#e0e0e0",
+            backgroundColor: "rgb(217, 226, 226)",
             margin: 0,
             padding: "0.5em",
             marginBottom: "10px",

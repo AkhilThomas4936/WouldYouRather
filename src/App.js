@@ -7,6 +7,7 @@ import SignIn from "./components/SignIn";
 import NotFound from "./components/NotFound";
 import QuestionDetailed from "./components/QuestionDetailed";
 import NewQuestion from "./components/NewQuestion";
+import Leaderboard from "./components/Leaderboard";
 
 import { handleInitialData } from "./actions/shared";
 
@@ -27,16 +28,17 @@ class App extends Component {
               path="/questions/:questionId"
               render={(props) => <QuestionDetailed {...props} />}
             />
-            <Route exact path="/newQuestion" render={() => <NewQuestion />} />
+            <Route exact path="/add" render={() => <NewQuestion />} />
+            <Route exact path="/leaderboard" render={() => <Leaderboard />} />
           </Fragment>
         )}
-        {/* <Route render={() => <NotFound />} /> */}
+        <Route render={() => <NotFound />} />
       </Switch>
     );
   }
 }
 
-function mapStateToProps({ questions, users, authedUser }) {
+function mapStateToProps({ authedUser }) {
   return {
     loading: authedUser === null,
   };

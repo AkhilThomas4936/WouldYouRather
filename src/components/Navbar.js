@@ -86,10 +86,10 @@ function Navbar(props) {
                 <Tab className={classes.tab} label="Home" />
               </Link>
 
-              <Link to="/newQuestion" className={classes.link}>
+              <Link to="/add" className={classes.link}>
                 <Tab className={classes.tab} label="New Question" />
               </Link>
-              <Link to="/" className={classes.link}>
+              <Link to="/leaderboard" className={classes.link}>
                 <Tab className={classes.tab} label="Leader Board" />
               </Link>
 
