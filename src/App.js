@@ -2,10 +2,11 @@ import React, { Component, Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import HomePage from "../src/components/HomePage";
-import SignIn from "../src/components/SignIn";
-import NotFound from "../src/components/NotFound";
-import QuestionDetailed from "../src/components/QuestionDetailed";
+import HomePage from "./components/HomePage";
+import SignIn from "./components/SignIn";
+import NotFound from "./components/NotFound";
+import QuestionDetailed from "./components/QuestionDetailed";
+import NewQuestion from "./components/NewQuestion";
 
 import { handleInitialData } from "./actions/shared";
 
@@ -26,6 +27,7 @@ class App extends Component {
               path="/questions/:questionId"
               render={(props) => <QuestionDetailed {...props} />}
             />
+            <Route exact path="/newQuestion" render={() => <NewQuestion />} />
           </Fragment>
         )}
         {/* <Route render={() => <NotFound />} /> */}

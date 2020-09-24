@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +9,7 @@ import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import logo from "../utils/images/logo.png";
+// import { Link } from "@material-ui/core";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -31,11 +33,13 @@ const useStyles = makeStyles((theme) => ({
 
   tabContainer: {
     marginLeft: "auto",
+    color: "white",
   },
   logo: {
     marginLeft: "30px",
     height: "3em",
     width: "3em",
+    marginTop: "0.3em",
   },
   avatar: {
     height: "3.5em",
@@ -48,25 +52,51 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 100,
     marginLeft: "25px",
   },
+  link: {
+    textDecoration: "none",
+    color: "white",
+    marginTop: "0.4em",
+  },
 }));
 
 function Navbar(props) {
+  // const [value, setValue] = React.useState(0);
+
+  // const handleChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
+
   const classes = useStyles();
   return (
     <React.Fragment>
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar>
-            <img className={classes.logo} src={logo} />
+            <Link to="/">
+              <img className={classes.logo} src={logo} />
+            </Link>
 
-            <Tabs className={classes.tabContainer}>
-              <Tab className={classes.tab} label="Home" />
-              <Tab className={classes.tab} label="New Question" />
-              <Tab className={classes.tab} label="Leader Board" />
+            <Tabs
+              className={classes.tabContainer}
+              // value={value}
+              // onChange={handleChange}
+            >
+              <Link to="/" className={classes.link}>
+                <Tab className={classes.tab} label="Home" />
+              </Link>
+
+              <Link to="/newQuestion" className={classes.link}>
+                <Tab className={classes.tab} label="New Question" />
+              </Link>
+              <Link to="/" className={classes.link}>
+                <Tab className={classes.tab} label="Leader Board" />
+              </Link>
+
               {props.loading ? null : (
                 <Tab
                   className={classes.tab}
                   label={`Hello ${props.users[props.authedUser].name}`}
+                  disabled
                 />
               )}
               {props.loading ? null : (
@@ -77,6 +107,7 @@ function Navbar(props) {
                       src={props.users[props.authedUser].avatar}
                     />
                   }
+                  disabled
                 />
               )}
               {props.loading ? null : (

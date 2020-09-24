@@ -78,8 +78,12 @@ function mapStateToProps({ questions, users, authedUser }, { match }) {
     : "";
   const answeredQuestion = isOptionOneAnswered || isOptionTwoAnswered;
   const totalVotes = optionOneVotes + optionTwoVotes;
-  const optionOnePercent = question ? (optionOneVotes / totalVotes) * 100 : 0;
-  const optionTwoPercent = question ? (optionTwoVotes / totalVotes) * 100 : 0;
+  const optionOnePercent = question
+    ? ((optionOneVotes / totalVotes) * 100).toFixed()
+    : 0;
+  const optionTwoPercent = question
+    ? ((optionTwoVotes / totalVotes) * 100).toFixed()
+    : 0;
   return {
     authedUser,
     question,

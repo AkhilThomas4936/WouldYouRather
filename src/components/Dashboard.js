@@ -21,9 +21,6 @@ class Dashboard extends Component {
   render() {
     const { answeredQuestions, unAnsweredQuestions, users } = this.props;
 
-    console.log(answeredQuestions);
-    console.log(unAnsweredQuestions);
-
     return (
       <Paper
         elevation="20"

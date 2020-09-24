@@ -45,8 +45,6 @@ class SignInTest extends Component {
                 {Object.keys(this.props.users).map((user) => (
                   <option key={user} value={this.props.users[user].id}>
                     {this.props.users[user].name}
-
-                    {/* <img src={this.props.users[user].avatar} /> */}
                   </option>
                 ))}
               </select>
@@ -54,6 +52,7 @@ class SignInTest extends Component {
                 style={{
                   width: "25%",
                   marginTop: "1.2em",
+                  backgroundColor: "#1976d2",
                 }}
                 variant="contained"
                 color="secondary"

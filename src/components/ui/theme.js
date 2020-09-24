@@ -1,24 +1,27 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-const fixWhite = "#3f51b5";
-// "#F5F5F5";
-const fixBlue = "#1976d2";
-const fixGreen = "#388e3c";
+const fixViolet = "#3f51b5"; //violet
+//
+const fixBlue = "#1976d2"; //blue for buttons
+const fixCrimson = "#DC143C"; //crimson
 
 export default createMuiTheme({
   palette: {
     common: {
-      fixBlue: `${fixWhite}`,
-      fixOrange: `${fixBlue}`,
+      fixViolet: `${fixViolet}`,
+      fixBlue: `${fixBlue}`,
     },
     primary: {
-      main: `${fixWhite}`,
+      main: `${fixViolet}`,
     },
     secondary: {
       main: `${fixBlue}`,
     },
-    third: {
-      main: `${fixGreen}`,
+    error: {
+      main: `${fixCrimson}`,
+    },
+    warning: {
+      main: "#f44336", //crimson
     },
   },
   typography: {
