@@ -73,12 +73,13 @@ function Navbar(props) {
         <AppBar position="fixed">
           <Toolbar>
             <Link to="/">
-              <img className={classes.logo} src={logo} />
+              <img className={classes.logo} src={logo} alt="logo" />
             </Link>
 
             <Tabs
               className={classes.tabContainer}
-              // value={value}
+              value={0}
+              indicatorColor="primary"
               // onChange={handleChange}
             >
               <Link to="/" className={classes.link}>
@@ -105,6 +106,7 @@ function Navbar(props) {
                     <img
                       className={classes.avatar}
                       src={props.users[props.authedUser].avatar}
+                      alt="user's avatar"
                     />
                   }
                   disabled

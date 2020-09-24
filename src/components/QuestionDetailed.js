@@ -27,7 +27,7 @@ function QuestionDetailed(props) {
   } = props;
 
   if (!question) {
-    return <h1></h1>;
+    return <h1>{""}</h1>;
   }
   return (
     <ThemeProvider theme={theme}>

@@ -27,7 +27,7 @@ class SignInTest extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Navbar />
-        <Paper className="signin-container" elevation="24">
+        <Paper className="signin-container" elevation={24}>
           <div>
             <div style={{ fontFamily: "Helvetica Neue" }} className="welcome">
               <h1>Welcome to the Would You Rather App!</h1>

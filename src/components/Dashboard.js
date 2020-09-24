@@ -23,7 +23,7 @@ class Dashboard extends Component {
 
     return (
       <Paper
-        elevation="20"
+        elevation={20}
         style={{
           width: "45%",
           margin: "auto",

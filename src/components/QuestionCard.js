@@ -38,7 +38,7 @@ export default function QuestionCard(props) {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} elevation="10">
+      <Paper className={classes.paper} elevation={10}>
         <h3
           style={{
             fontFamily: "Roboto",
