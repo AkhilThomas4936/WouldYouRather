@@ -11,7 +11,6 @@ import Leaderboard from "./components/Leaderboard";
 import Navbar from "./components/Navbar";
 
 import { handleInitialData } from "./actions/shared";
-import { Toolbar } from "@material-ui/core";
 
 class App extends Component {
   componentDidMount() {
