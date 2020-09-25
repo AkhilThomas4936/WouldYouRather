@@ -19,7 +19,7 @@ class SignInTest extends Component {
     this.props.dispatch(setAuthedUser(this.state.authedId));
   };
   render() {
-    console.log(this.state.authedId);
+    // console.log(this.state.authedId);
     return (
       <ThemeProvider theme={theme}>
         <Paper className="signin-container" elevation={24}>
