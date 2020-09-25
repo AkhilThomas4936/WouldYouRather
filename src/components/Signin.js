@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "../components/ui/theme";
-
-import Navbar from "../components/Navbar";
-
+import theme from "./ui/theme";
 import welcome from "../utils/images/welcome.svg";
+import { Paper, Button } from "@material-ui/core";
 
 class SignInTest extends Component {
   state = {
@@ -26,7 +22,6 @@ class SignInTest extends Component {
     console.log(this.state.authedId);
     return (
       <ThemeProvider theme={theme}>
-        <Navbar />
         <Paper className="signin-container" elevation={24}>
           <div>
             <div style={{ fontFamily: "Helvetica Neue" }} className="welcome">

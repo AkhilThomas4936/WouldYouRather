@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QuestionCard from "../components/QuestionCard";
-
-import Paper from "@material-ui/core/Paper";
-import Toolbar from "@material-ui/core/Toolbar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { Paper, Toolbar, Tabs, Tab } from "@material-ui/core";
 
 class Dashboard extends Component {
   state = {
@@ -33,7 +29,9 @@ class Dashboard extends Component {
       >
         <Toolbar
           style={{
+            color: "White",
             backgroundColor: "#7986cb",
+            // "#7986cb",
           }}
         >
           <Tabs

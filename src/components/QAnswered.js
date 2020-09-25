@@ -1,7 +1,6 @@
 import React from "react";
-
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-
+import LinearProgress from "@material-ui/core/LinearProgress";
 import {
   Grid,
   Paper,
@@ -11,7 +10,6 @@ import {
   FormControlLabel,
   Typography,
 } from "@material-ui/core";
-import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -130,7 +128,6 @@ export default function QAnswered(props) {
                       label={question.optionOne.text}
                       checked
                     >
-                      {/* {" "} */}
                       {optionOnePercent}
                     </FormControlLabel>
                   ) : (

@@ -2,16 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
-import Navbar from "./Navbar";
 import newQuestion from "../utils/images/newQuestion.svg";
 import { addNewQuestion } from "../actions/questions";
 import { addUserQuestion } from "../actions/users";
 import { _saveQuestion } from "../utils/_DATA";
-
-import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../components/ui/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { LinearProgress } from "@material-ui/core";
 import {
   Paper,
   Button,
@@ -22,7 +20,6 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
     padding: 0,
     margin: "auto",
     maxWidth: 600,
@@ -44,12 +41,13 @@ const useStyles = makeStyles((theme) => ({
 
 function NewQuestion(props) {
   const [submitted, setSubmitted] = React.useState(false);
-  const { register, handleSubmit } = useForm();
+  const [isLoading, setLoading] = React.useState(false);
+  const { register, handleSubmit, errors } = useForm();
   const { authedUser, addUserQuestion, addNewQuestion } = props;
 
   const handleOnSubmit = async (data) => {
-    console.log(submitted);
     const { optionOne, optionTwo } = data;
+    setLoading(!isLoading);
     const question = await _saveQuestion({
       optionOneText: optionOne,
       optionTwoText: optionTwo,
@@ -58,20 +56,17 @@ function NewQuestion(props) {
 
     addNewQuestion(question);
     addUserQuestion(authedUser, question.id);
-    console.log(submitted);
-
+    setLoading(!isLoading);
     setSubmitted(!submitted);
-
-    console.log(submitted);
   };
 
   const classes = useStyles();
   if (submitted) {
-    return <Redirect />;
+    return <Redirect to="/" />;
   }
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {isLoading ? <LinearProgress color="secondary" /> : null}
 
       <Paper className={classes.paper} elevation={15}>
         <h1
@@ -103,7 +98,13 @@ function NewQuestion(props) {
             onSubmit={handleSubmit(handleOnSubmit)}
           >
             <TextField
-              inputRef={register}
+              inputRef={register({
+                required: true,
+                minLength: 1,
+                validate: (value) => {
+                  return !!value.trim();
+                },
+              })}
               variant="outlined"
               margin="normal"
               required
@@ -114,9 +115,18 @@ function NewQuestion(props) {
               type="text"
               autoFocus
             />
+            {errors.optionOne && (
+              <p style={{ color: "crimson" }}>Please enter Option One</p>
+            )}
             <h4 style={{ margin: 0, textAlign: "center" }}>Or</h4>
             <TextField
-              inputRef={register}
+              inputRef={register({
+                required: true,
+                minLength: 1,
+                validate: (value) => {
+                  return !!value.trim();
+                },
+              })}
               style={{ width: "100%" }}
               variant="outlined"
               margin="normal"
@@ -125,6 +135,9 @@ function NewQuestion(props) {
               label="Option Two"
               type="text"
             />
+            {errors.optionTwo && (
+              <p style={{ color: "crimson" }}>Please enter Option Two</p>
+            )}
 
             <Button
               style={{

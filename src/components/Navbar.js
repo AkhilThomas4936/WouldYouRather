@@ -1,15 +1,19 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import { makeStyles } from "@material-ui/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { unsetAuthedUser } from "../actions/authedUser";
 import logo from "../utils/images/logo.png";
-// import { Link } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import theme from "./ui/theme";
+import { ThemeProvider } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  useScrollTrigger,
+  Tabs,
+  Tab,
+} from "@material-ui/core";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -26,19 +30,14 @@ function ElevationScroll(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  toolbarMargin: {
-    ...theme.mixins.toolbar,
-    marginBottom: "1em",
-  },
-
   tabContainer: {
     marginLeft: "auto",
     color: "white",
   },
   logo: {
     marginLeft: "30px",
-    height: "3em",
-    width: "3em",
+    height: "3.5em",
+    width: "3.5em",
     marginTop: "0.3em",
   },
   avatar: {
@@ -52,78 +51,94 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 100,
     marginLeft: "25px",
   },
-  link: {
-    textDecoration: "none",
-    color: "white",
-    marginTop: "0.4em",
-  },
 }));
 
 function Navbar(props) {
-  // const [value, setValue] = React.useState(0);
-
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    console.log(value);
+    setValue(newValue);
+    console.log(value);
+  };
+  const { unsetAuthedUser } = props;
+  const handleLogout = () => {
+    unsetAuthedUser();
+  };
 
   const classes = useStyles();
+
   return (
-    <React.Fragment>
-      <ElevationScroll>
-        <AppBar position="fixed">
-          <Toolbar>
-            <Link to="/">
-              <img className={classes.logo} src={logo} alt="logo" />
-            </Link>
-
-            <Tabs
-              className={classes.tabContainer}
-              value={0}
-              indicatorColor="primary"
-              // onChange={handleChange}
-            >
-              <Link to="/" className={classes.link}>
-                <Tab className={classes.tab} label="Home" />
+    <div style={{ marginBottom: "6em" }}>
+      <ThemeProvider theme={theme}>
+        <ElevationScroll>
+          <AppBar position="fixed" className={classes.appbar}>
+            <Toolbar>
+              <Link to="/">
+                <img className={classes.logo} src={logo} alt="logo" />
               </Link>
 
-              <Link to="/add" className={classes.link}>
-                <Tab className={classes.tab} label="New Question" />
-              </Link>
-              <Link to="/leaderboard" className={classes.link}>
-                <Tab className={classes.tab} label="Leader Board" />
-              </Link>
-
-              {props.loading ? null : (
+              <Tabs
+                className={classes.tabContainer}
+                value={value}
+                indicatorColor="secondary"
+                onChange={handleChange}
+              >
                 <Tab
-                  style={{ color: "#fff" }}
                   className={classes.tab}
-                  label={`Hello ${props.users[props.authedUser].name}`}
-                  disabled
+                  label="Home"
+                  component={Link}
+                  to="/"
                 />
-              )}
-              {props.loading ? null : (
+
                 <Tab
-                  label={
-                    <img
-                      className={classes.avatar}
-                      src={props.users[props.authedUser].avatar}
-                      alt="user's avatar"
-                    />
-                  }
-                  disabled
+                  className={classes.tab}
+                  label="New Question"
+                  component={Link}
+                  to="/add"
                 />
-              )}
-              {props.loading ? null : (
-                <Link to="/" className={classes.link}>
-                  <Tab className={classes.tab} label="Logout" />
-                </Link>
-              )}
-            </Tabs>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-      <div className={classes.toolbarMargin} />
-    </React.Fragment>
+                <Tab
+                  className={classes.tab}
+                  label="Leader Board"
+                  component={Link}
+                  to="/leaderboard"
+                />
+
+                {props.loading ? null : (
+                  <Tab
+                    className={classes.tab}
+                    label={`Hello \u00A0\u00A0 ${
+                      props.users[props.authedUser].name
+                    }`}
+                    disabled
+                  />
+                )}
+                {props.loading ? null : (
+                  <Tab
+                    label={
+                      <img
+                        className={classes.avatar}
+                        src={props.users[props.authedUser].avatar}
+                        alt="user's avatar"
+                      />
+                    }
+                    disabled
+                  />
+                )}
+                {props.loading ? null : (
+                  <Tab
+                    onClick={handleLogout}
+                    className={classes.tab}
+                    label="Logout"
+                    component={Link}
+                    to="/"
+                  />
+                )}
+              </Tabs>
+            </Toolbar>
+          </AppBar>
+        </ElevationScroll>
+      </ThemeProvider>
+    </div>
   );
 }
 
@@ -134,4 +149,4 @@ function mapStateToProps({ authedUser, users }) {
     users,
   };
 }
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { unsetAuthedUser })(Navbar);

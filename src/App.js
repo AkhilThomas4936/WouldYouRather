@@ -8,8 +8,10 @@ import NotFound from "./components/NotFound";
 import QuestionDetailed from "./components/QuestionDetailed";
 import NewQuestion from "./components/NewQuestion";
 import Leaderboard from "./components/Leaderboard";
+import Navbar from "./components/Navbar";
 
 import { handleInitialData } from "./actions/shared";
+import { Toolbar } from "@material-ui/core";
 
 class App extends Component {
   componentDidMount() {
@@ -17,28 +19,29 @@ class App extends Component {
   }
   render() {
     return (
-      <Switch>
-        {this.props.loading ? (
-          <Route path="/" render={() => <SignIn />} />
-        ) : (
-          <Fragment>
-            <Route exact path="/" render={() => <HomePage />} />
-            <Route
-              exact
-              path="/questions/:questionId"
-              render={(props) => <QuestionDetailed {...props} />}
-            />
-            <Route exact path="/add" render={() => <NewQuestion />} />
-            <Route exact path="/leaderboard" render={() => <Leaderboard />} />
-            <Route render={() => <NotFound />} />
-          </Fragment>
-        )}
-        {/* <Route component={NotFound} /> */}
-      </Switch>
+      <Fragment>
+        <Navbar />
+        <Switch>
+          {this.props.loading ? (
+            <Route path="/" render={() => <SignIn />} />
+          ) : (
+            <Switch>
+              <Route exact path="/" render={() => <HomePage />} />
+              <Route
+                exact
+                path="/questions/:questionId"
+                render={(props) => <QuestionDetailed {...props} />}
+              />
+              <Route exact path="/add" render={() => <NewQuestion />} />
+              <Route exact path="/leaderboard" render={() => <Leaderboard />} />
+              <Route render={() => <NotFound />} />
+            </Switch>
+          )}
+        </Switch>
+      </Fragment>
     );
   }
 }
-
 function mapStateToProps({ authedUser }) {
   return {
     loading: authedUser === null,

@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
 import QUnanswered from "./QUnanswered";
 import QAnswered from "./QAnswered";
 import { saveQuestionAnswer } from "../actions/questions";
 import { saveUserAnswer } from "../actions/users";
-
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../components/ui/theme";
 
@@ -31,7 +29,6 @@ function QuestionDetailed(props) {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
       {!answeredQuestion ? (
         <QUnanswered
           authedUser={authedUser}

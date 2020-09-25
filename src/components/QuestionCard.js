@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import {
+  Grid,
+  Paper,
+  Button,
+  ButtonBase,
+  CssBaseline,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,22 +81,24 @@ export default function QuestionCard(props) {
                 <h2
                   style={{
                     color: "black",
-                    // "#616161",
                   }}
                 >
                   Would you rather
                 </h2>
-                <h4
+                <h3
                   style={{ fontFamily: "Roboto", color: "#616161" }}
-                >{`__${question.optionOne.text.slice(0, 10)}__`}</h4>
+                >{`__${question.optionOne.text.slice(0, 15)}__`}</h3>
                 <Link
                   to={`questions/${questionId}`}
                   style={{ textDecoration: "none" }}
                 >
                   <Button
-                    style={{ padding: "0.5em 3em" }}
+                    style={{
+                      padding: "0.5em 3em",
+                      backgroundColor: "#4caf50",
+                      color: "white",
+                    }}
                     variant="contained"
-                    color="secondary"
                   >
                     View Full
                   </Button>

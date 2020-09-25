@@ -1,10 +1,6 @@
 import React from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { Grid, Paper, ButtonBase, CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +46,7 @@ export default function LeadCard(props) {
               className={classes.image}
               style={{
                 paddingRight: "20px",
-                borderRight: "solid #e0e0e0 1px",
+                borderRight: "solid grey 1px",
               }}
             >
               <img
@@ -73,13 +69,18 @@ export default function LeadCard(props) {
               >{`Created questions:\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${qCreated}`}</h3>
             </div>
           </Grid>
-          <Grid item>
-            <h2>Score</h2>
+          <Grid
+            item
+            style={{ paddingLeft: "30px", borderLeft: "solid 1px grey" }}
+          >
+            <h2 style={{ marginBottom: 0 }}>Score</h2>
             <h2
               style={{
                 color: "white",
+                padding: "0.5em",
+                borderRadius: "100%",
                 backgroundColor: "#4caf50",
-                marginTop: "1.2em",
+                marginTop: "0.7em",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",

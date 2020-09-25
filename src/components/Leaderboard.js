@@ -1,11 +1,8 @@
 import React from "react";
 import leads from "../utils/images/leaderBoard.svg";
-import Navbar from "./Navbar";
 import LeadCard from "./LeadCard";
-
 import { ThemeProvider } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-
 import theme from "../components/ui/theme";
 import { connect } from "react-redux";
 
@@ -14,7 +11,6 @@ function Leaderboard(props) {
   console.log(score);
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
       <Paper
         elevation={20}
         style={{

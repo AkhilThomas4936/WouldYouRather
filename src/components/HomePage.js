@@ -3,7 +3,6 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../components/ui/theme";
 import ".././App.css";
 
-import Navbar from "./Navbar";
 import Dashboard from "./Dashboard";
 
 function HomePage(props) {
@@ -11,7 +10,6 @@ function HomePage(props) {
     <ThemeProvider theme={theme}>
       <div className="App">
         <div>
-          <Navbar />
           <Dashboard />
         </div>
       </div>
