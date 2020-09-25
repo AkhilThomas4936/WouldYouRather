@@ -9,7 +9,6 @@ export function receiveUsers(users) {
   };
 }
 export function saveUserAnswer(authedUser, qid, answer) {
-  console.log("This is also working fine");
   return {
     type: USER_ANSWER_SAVE,
     authedUser,

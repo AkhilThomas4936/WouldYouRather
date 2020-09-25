@@ -55,13 +55,12 @@ const useStyles = makeStyles((theme) => ({
 function Navbar(props) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
-    console.log(value);
     setValue(newValue);
-    console.log(value);
   };
   const { unsetAuthedUser } = props;
   const handleLogout = () => {
     unsetAuthedUser();
+    setValue(0);
   };
 
   const classes = useStyles();

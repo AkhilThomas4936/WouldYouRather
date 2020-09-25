@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 
 function Leaderboard(props) {
   const { score, users } = props;
-  console.log(score);
   return (
     <ThemeProvider theme={theme}>
       <Paper

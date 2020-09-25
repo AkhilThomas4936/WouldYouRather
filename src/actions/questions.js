@@ -10,7 +10,6 @@ export function receiveQuestions(questions) {
 }
 
 export function saveQuestionAnswer(authedUser, qid, answer) {
-  console.log("this one is working");
   return {
     type: SAVE_QUESTION_ANSWER,
     authedUser,
@@ -20,7 +19,6 @@ export function saveQuestionAnswer(authedUser, qid, answer) {
 }
 
 export function addNewQuestion(question) {
-  console.log("new question added to redux state");
   return {
     type: ADD_NEW_QUESTION,
     question,

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import QUnanswered from "./QUnanswered";
 import QAnswered from "./QAnswered";
+import NotFound from "./NotFound";
 import { saveQuestionAnswer } from "../actions/questions";
 import { saveUserAnswer } from "../actions/users";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -25,7 +26,7 @@ function QuestionDetailed(props) {
   } = props;
 
   if (!question) {
-    return <h1>{""}</h1>;
+    return <NotFound />;
   }
   return (
     <ThemeProvider theme={theme}>

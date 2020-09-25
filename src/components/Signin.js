@@ -6,7 +6,7 @@ import theme from "./ui/theme";
 import welcome from "../utils/images/welcome.svg";
 import { Paper, Button } from "@material-ui/core";
 
-class SignInTest extends Component {
+class SignIn extends Component {
   state = {
     authedId: null,
   };
@@ -67,4 +67,4 @@ function mapStateToProps({ users }) {
   return { loading: users === null, users };
 }
 
-export default connect(mapStateToProps)(SignInTest);
+export default connect(mapStateToProps)(SignIn);

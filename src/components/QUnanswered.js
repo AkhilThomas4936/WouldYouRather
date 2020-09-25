@@ -55,7 +55,7 @@ export default function QUnanswered(props) {
   };
 
   const classes = useStyles();
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className={classes.root}>
