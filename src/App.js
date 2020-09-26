@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import HomePage from "./components/HomePage";
-import SignIn from "./components/SignIn";
+import SignIn from "./components/Signin";
 import NotFound from "./components/NotFound";
 import QuestionDetailed from "./components/QuestionDetailed";
 import NewQuestion from "./components/NewQuestion";
