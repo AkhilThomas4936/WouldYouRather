@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-
+import PropTypes from "prop-types";
 import HomePage from "./components/HomePage";
 import SignIn from "./components/Signin";
 import NotFound from "./components/NotFound";
@@ -41,6 +41,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  handleInitialData: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 function mapStateToProps({ authedUser }) {
   return {
     loading: authedUser === null,

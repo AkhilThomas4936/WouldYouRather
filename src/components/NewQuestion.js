@@ -10,6 +10,7 @@ import theme from "../components/ui/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { LinearProgress } from "@material-ui/core";
+import PropTypes from "prop-types";
 import {
   Paper,
   Button,
@@ -156,6 +157,13 @@ function NewQuestion(props) {
     </ThemeProvider>
   );
 }
+
+NewQuestion.propTypes = {
+  addNewQuestion: PropTypes.func.isRequired,
+  addUserQuestion: PropTypes.func.isRequired,
+  authedUser: PropTypes.string.isRequired,
+};
+
 function mapStateToProps(state) {
   const { authedUser } = state;
   return {

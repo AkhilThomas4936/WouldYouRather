@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { _saveQuestionAnswer } from "../utils/_DATA";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, Button, ButtonBase, Radio } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -144,3 +145,13 @@ export default function QUnanswered(props) {
     </div>
   );
 }
+
+QUnanswered.propTypes = {
+  authedUser: PropTypes.string.isRequired,
+  questionId: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  question: PropTypes.object.isRequired,
+  saveQuestionAnswer: PropTypes.func.isRequired,
+  saveUserAnswer: PropTypes.func.isRequired,
+};

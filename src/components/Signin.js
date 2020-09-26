@@ -5,6 +5,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/theme";
 import welcome from "../utils/images/welcome.svg";
 import { Paper, Button } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 class SignIn extends Component {
   state = {
@@ -62,6 +63,11 @@ class SignIn extends Component {
     );
   }
 }
+
+SignIn.propTypes = {
+  setAuthedUser: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+};
 
 function mapStateToProps({ users }) {
   return { loading: users === null, users };

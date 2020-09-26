@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import QuestionCard from "../components/QuestionCard";
 import { Paper, Toolbar, Tabs, Tab } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 class Dashboard extends Component {
   state = {
@@ -79,6 +80,13 @@ class Dashboard extends Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  answeredQuestions: PropTypes.array,
+  unAnsweredQuestions: PropTypes.array,
+  users: PropTypes.object,
+};
+
 function mapStateToProps({ questions, users, authedUser }) {
   const answeredQIds = Object.keys(users[authedUser].answers);
 

@@ -5,6 +5,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import theme from "../components/ui/theme";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 function Leaderboard(props) {
   const { score, users } = props;
@@ -37,6 +38,11 @@ function Leaderboard(props) {
     </ThemeProvider>
   );
 }
+
+Leaderboard.propTypes = {
+  users: PropTypes.object.isRequired,
+  score: PropTypes.array.isRequired,
+};
 
 function mapStateToProps(state) {
   const { users } = state;

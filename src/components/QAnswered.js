@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import PropTypes from "prop-types";
 import {
   Grid,
   Paper,
@@ -186,3 +187,15 @@ export default function QAnswered(props) {
     </div>
   );
 }
+
+QAnswered.propTypes = {
+  author: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  question: PropTypes.object.isRequired,
+  authedUser: PropTypes.string.isRequired,
+  optionOnePercent: PropTypes.string.isRequired,
+  optionTwoPercent: PropTypes.string.isRequired,
+  optionOneVotes: PropTypes.number.isRequired,
+  optionTwoVotes: PropTypes.number.isRequired,
+  totalVotes: PropTypes.number.isRequired,
+};

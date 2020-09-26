@@ -6,6 +6,7 @@ import NotFound from "./NotFound";
 import { saveQuestionAnswer } from "../actions/questions";
 import { saveUserAnswer } from "../actions/users";
 import { ThemeProvider } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import theme from "../components/ui/theme";
 
 function QuestionDetailed(props) {
@@ -60,6 +61,22 @@ function QuestionDetailed(props) {
     </ThemeProvider>
   );
 }
+
+QuestionDetailed.propTypes = {
+  authedUser: PropTypes.string.isRequired,
+  question: PropTypes.object,
+  questionId: PropTypes.string,
+  author: PropTypes.string,
+  avatar: PropTypes.string,
+  answeredQuestion: PropTypes.any,
+  optionOnePercent: PropTypes.any,
+  optionTwoPercent: PropTypes.any,
+  optionOneVotes: PropTypes.number.isRequired,
+  optionTwoVotes: PropTypes.number.isRequired,
+  totalVotes: PropTypes.number.isRequired,
+  saveQuestionAnswer: PropTypes.func.isRequired,
+  saveUserAnswer: PropTypes.func.isRequired,
+};
 
 function mapStateToProps({ questions, users, authedUser }, { match }) {
   const { questionId } = match.params;

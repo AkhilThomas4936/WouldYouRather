@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, ButtonBase, CssBaseline } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,3 +95,8 @@ export default function LeadCard(props) {
     </div>
   );
 }
+
+LeadCard.propTypes = {
+  users: PropTypes.object.isRequired,
+  user: PropTypes.string.isRequired,
+};

@@ -6,6 +6,7 @@ import logo from "../utils/images/logo.png";
 import { makeStyles } from "@material-ui/styles";
 import theme from "./ui/theme";
 import { ThemeProvider } from "@material-ui/core";
+import PropTypes from "prop-types";
 import {
   AppBar,
   Toolbar,
@@ -139,6 +140,13 @@ function Navbar(props) {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  unsetAuthedUser: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  authedUser: PropTypes.string,
+  users: PropTypes.object.isRequired,
+};
 
 function mapStateToProps({ authedUser, users }) {
   return {

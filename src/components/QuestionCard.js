@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -112,3 +113,8 @@ export default function QuestionCard(props) {
     </div>
   );
 }
+
+QuestionCard.propTypes = {
+  question: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
+};
