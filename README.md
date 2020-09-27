@@ -7,3 +7,4 @@ Would You Rather is a web app that lets a user play the “Would You Rather?” 
 You must need Node.js installed in your machine.
 Clone this repository to your local machine and run "npm install" to download all the dependancies.
 Launch development server using "npm start" .
+# The app is available at https://would-you-rather-a70af.web.app/
