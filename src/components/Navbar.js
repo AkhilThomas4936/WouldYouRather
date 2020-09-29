@@ -63,6 +63,9 @@ function Navbar(props) {
     unsetAuthedUser();
     setValue(0);
   };
+  const toHome = () => {
+    setValue(0);
+  };
 
   const classes = useStyles();
 
@@ -73,7 +76,12 @@ function Navbar(props) {
           <AppBar position="fixed" className={classes.appbar}>
             <Toolbar>
               <Link to="/">
-                <img className={classes.logo} src={logo} alt="logo" />
+                <img
+                  className={classes.logo}
+                  src={logo}
+                  alt="logo"
+                  onClick={toHome}
+                />
               </Link>
 
               <Tabs
